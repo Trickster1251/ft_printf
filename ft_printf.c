@@ -1,37 +1,54 @@
-# include "ft_printf.h"
-# include <stdio.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
-
-
-int     ft_printf(const char *s, ...)
+void	init_values(t_list *va)
 {
-    int i;
-    va_list  ap;
-    t_list va;
-    
-    init_values(&va);
-    i = 0;
-    va_start(ap,s);
-    while (*s)
-    {
-        if (*s == '%' && *(s+1) == '\0')
-        {
-            
-            s = ft_parcer((char*)s, ap, va);
-            s++;
-        }
-        else
-            i += write(1, s++, 1);
-    }
-    printf("%c %c %c %c %c", va.flag, va.witdth, va.dot, va.precission, va.type);
-    va_end(ap);
-    return (i);
+	va->flag = 0;
+	va->witdth = 0;
+	va->precission = 0;
+	va->type = 0;
 }
 
-int main()
-{
 
-    ft_printf("Hello World %-0*.12c", 5, 'b');
-    ft_printf("Hello\n");
-    printf("Hello\n");
+int		ft_printf(const char	*str, ...)
+{
+	int		len;
+	t_list  va;
+	va_list argptr;
+	len = 0;
+	va_start(argptr, str);
+	init_values(&va);
+	while(*str)
+	{
+		if (*str == '%' && *(str + 1) != '\0')
+		{
+			str = ft_parser((char*)str, &va, &argptr);
+			len += ft_processor(&va, &argptr);
+		}
+		else
+			len += write(1,str++,1);
+	}
+	// printf("\nflag : %d\n", va.flag);
+	// printf("wight : %d\n", va.witdth);
+	// printf("pressicion : %d\n", va.precission);
+	// printf("type : %c\n", va.type);
+	va_end(argptr);
+	return (len);
 }
+
+// int main()
+// {
+// // 	// printf("Hello World\n    %2c\n", 'c');
+// // 	// printf("%d", ft_printf("Hello World %d", 200));
+
+// // 	// printf("%d", ft_printf("hello %%\n"));
+// // 	// printf("%d", printf("hello %%\n"));
+// // 	// flag -  форматирует вывод по левому краю (пробела после числа)
+// // 	// флаг 0 - заполняет нулями до (ширина - количество символов) если есть точность флаг скидывается на дефолтный
+// // 	// дефолтный флаг форматирует вывод по правому краю (пробелы до числа)
+// // 	// вывод ширины = ширина - (количество символов + (число точности - количество символов))
+// // 	// если в ширине есть минус то минус становится флагом
+// // 	// если есть точность то добавляем нули перед числом // точность = число точности - кол символов
+// // 	// если точность минусовая то она становится 0
+// // 	// printf("Hello World %-10.5d_hello", 10);
+// }
