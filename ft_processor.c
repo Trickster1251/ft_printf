@@ -1,19 +1,30 @@
-#include "ft_printf.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_processor.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walethea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/27 00:50:01 by walethea          #+#    #+#             */
+/*   Updated: 2020/12/27 00:50:05 by walethea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int     ft_print_while(int i, char chr)
+#include "ft_printf.h"
+
+int		ft_print_while(int i, char chr)
 {
-	int     len;
+	int		len;
 
 	len = 0;
-	while((i--) > 0)
+	while ((i--) > 0)
 	{
-		len += write(1,&chr,1);
+		len += write(1, &chr, 1);
 	}
 	return (len);
 }
 
-int     ft_processor(t_list *va, va_list *argptr)
+int		ft_processor(t_list *va, va_list *argptr)
 {
 	int len;
 
@@ -22,7 +33,7 @@ int     ft_processor(t_list *va, va_list *argptr)
 		len += ft_print_int(argptr, va);
 	else if (va->type == 'u')
 		len += ft_print_int_u(argptr, va);
-	else if(va->type == 'x' || va->type == 'X')
+	else if (va->type == 'x' || va->type == 'X')
 		len += ft_print_x(argptr, va);
 	else if (va->type == 'p')
 		len += ft_print_p(argptr, va);

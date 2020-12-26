@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walethea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/26 23:55:20 by walethea          #+#    #+#             */
+/*   Updated: 2020/12/26 23:55:21 by walethea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int     ft_print_c(va_list *argptr, t_list *va)
+int		ft_print_c(va_list *argptr, t_list *va)
 {
-	int     len;
+	int		len;
+	char	chr;
 
 	len = 0;
-	char chr = (va->type == '%') ? '%' :
+	chr = (va->type == '%') ? '%' :
 	va_arg(*argptr, int);
 	if (va->type == '%' && va->flag == 0)
 	{

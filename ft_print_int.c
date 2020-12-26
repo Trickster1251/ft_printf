@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walethea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/27 00:08:36 by walethea          #+#    #+#             */
+/*   Updated: 2020/12/27 00:08:38 by walethea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int     ft_print_left(int len_num,t_list *va, int num)
+int		ft_print_left(int len_num, t_list *va, int num)
 {
 	int len;
 
 	len = 0;
-	
 	if (va->negative == 1)
 	{
 		len_num++;
@@ -15,18 +26,19 @@ int     ft_print_left(int len_num,t_list *va, int num)
 	len += ft_print_while(va->precission - len_num, '0');
 	if (va->precission == 0 && va->dot == 1 && num == 0)
 		len_num--;
-	else ft_uputnbr(num);
+	else
+		ft_uputnbr(num);
 	len += ft_print_while(va->witdth - MAX(len_num, va->precission), ' ');
 	return (len + len_num);
 }
 
-int     ft_print_right(int len_num,t_list *va, int num)
+int		ft_print_right(int len_num, t_list *va, int num)
 {
-	char    sym;
-	int     len;
+	char	sym;
+	int		len;
+
 	len = 0;
 	sym = ' ';
-
 	if (va->precission == 0 && va->dot == 1 && num == 0)
 		len_num--;
 	if (va->flag == 0 && !(va->dot))
@@ -35,11 +47,8 @@ int     ft_print_right(int len_num,t_list *va, int num)
 	{
 		ft_putchar_fd('-', 1);
 	}
-	if (va->negative == 1)
-	{
+	if (va->negative == 1 && len_num++)
 		va->precission++;
-		len_num++;
-	}
 	len += ft_print_while(va->witdth - MAX(len_num, va->precission), sym);
 	if (va->negative == 1 && sym != '0')
 		ft_putchar_fd('-', 1);
@@ -50,15 +59,15 @@ int     ft_print_right(int len_num,t_list *va, int num)
 	return (len + len_num);
 }
 
-
-int     ft_print_int(va_list *argptr, t_list *va)
+int		ft_print_int(va_list *argptr, t_list *va)
 {
-	int len;
-	long long num;
-	int len_num;
+	int			len;
+	long long	num;
+	int			len_num;
 
 	len = 0;
-	len_num = ft_numlen(num = va_arg(*argptr, int),va);
+	num = va_arg(*argptr, int);
+	len_num = ft_numlen(num, va);
 	if (num < 0)
 	{
 		va->negative = 1;

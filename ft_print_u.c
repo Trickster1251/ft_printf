@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walethea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/27 00:11:03 by walethea          #+#    #+#             */
+/*   Updated: 2020/12/27 00:11:17 by walethea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_putnbr_u(unsigned int n)
@@ -23,7 +35,7 @@ int		ft_putnbr_u(unsigned int n)
 	return (len);
 }
 
-int     ft_print_left_u(int len_num,t_list *va, int num)
+int		ft_print_left_u(int len_num, t_list *va, int num)
 {
 	int len;
 
@@ -31,19 +43,19 @@ int     ft_print_left_u(int len_num,t_list *va, int num)
 	len += ft_print_while(va->precission - len_num, '0');
 	if (va->precission == 0 && va->dot == 1 && num == 0)
 		len_num--;
-	else 
+	else
 		ft_putnbr_u(num);
 	len += ft_print_while(va->witdth - MAX(len_num, va->precission), ' ');
 	return (len + len_num);
 }
 
-int     ft_print_right_u(int len_num,t_list *va, int num)
+int		ft_print_right_u(int len_num, t_list *va, int num)
 {
-	char    sym;
-	int     len;
+	char	sym;
+	int		len;
+
 	len = 0;
 	sym = ' ';
-
 	if (va->precission == 0 && va->dot == 1 && num == 0)
 		len_num--;
 	if (va->flag == 0 && !(va->dot))
@@ -56,14 +68,15 @@ int     ft_print_right_u(int len_num,t_list *va, int num)
 	return (len + len_num);
 }
 
-int     ft_print_int_u(va_list *argptr, t_list *va)
+int		ft_print_int_u(va_list *argptr, t_list *va)
 {
-	int len;
-	long num;
-	int len_num;
+	int		len;
+	long	num;
+	int		len_num;
 
 	len = 0;
-	len_num = ft_numlen(num = va_arg(*argptr, unsigned int), va);
+	num = va_arg(*argptr, unsigned int);
+	len_num = ft_numlen(num, va);
 	if (va->flag == 1)
 		len = ft_print_left_u(len_num, va, num);
 	else

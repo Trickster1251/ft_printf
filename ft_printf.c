@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: walethea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/27 00:42:54 by walethea          #+#    #+#             */
+/*   Updated: 2020/12/27 00:45:47 by walethea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	init_values(t_list *va)
@@ -10,14 +22,15 @@ void	init_values(t_list *va)
 	va->type = 0;
 }
 
-int		ft_printf(const char	*str, ...)
+int		ft_printf(const char *str, ...)
 {
-	int		len;
-	t_list  va;
-	va_list argptr;
+	int			len;
+	t_list		va;
+	va_list		argptr;
+
 	len = 0;
 	va_start(argptr, str);
-	while(*str)
+	while (*str)
 	{
 		if (*str == '%' && *(str + 1) != '\0')
 		{
@@ -26,7 +39,7 @@ int		ft_printf(const char	*str, ...)
 			len += ft_processor(&va, &argptr);
 		}
 		else
-			len += write(1,str++,1);
+			len += write(1, str++, 1);
 	}
 	va_end(argptr);
 	return (len);
