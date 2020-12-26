@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: walethea <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/26 20:30:07 by walethea          #+#    #+#              #
+#    Updated: 2020/12/26 20:31:06 by walethea         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 INC = ft_printf.h
 LIBA = ./libft/libft.a
@@ -5,6 +17,13 @@ SRCS =	ft_is_flag.c \
 		ft_printf.c \
 		ft_parcer.c \
 		ft_processor.c \
+		ft_uputnbr.c \
+		ft_print_u.c \
+		ft_print_int.c \
+		ft_print_x.c \
+		ft_print_p.c \
+		ft_print_c.c \
+		ft_print_s.c \
 			
 OBJS = $(SRCS:.c=.o)
 FLAG = -Wall -Wextra -Werror
