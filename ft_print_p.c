@@ -21,8 +21,11 @@ int		ft_numlen_p(unsigned long long num, t_list *va)
 		return (2);
 	else if (num == 0)
 		return (3);
-	while (num > 0 && len++)
+	while (num > 0)
+	{
 		num /= 16;
+		len++;
+	}
 	return (len + 2);
 }
 

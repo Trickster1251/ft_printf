@@ -6,7 +6,7 @@
 #    By: walethea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/26 20:30:07 by walethea          #+#    #+#              #
-#    Updated: 2020/12/26 20:31:06 by walethea         ###   ########.fr        #
+#    Updated: 2020/12/27 01:41:46 by walethea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	ft_is_flag.c \
 		ft_print_p.c \
 		ft_print_c.c \
 		ft_print_s.c \
+		ft_numlen.c \
 			
 OBJS = $(SRCS:.c=.o)
 FLAG = -Wall -Wextra -Werror

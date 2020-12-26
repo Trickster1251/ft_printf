@@ -19,7 +19,7 @@ int		ft_numlen(long num, t_list *va)
 	len = 0;
 	if (num == 0)
 		return (1);
-	if (num < 0 && (va->type == 'd' || va->type == 'i'))
+	else if (num < 0 && (va->type == 'd' || va->type == 'i'))
 		num *= -1;
 	while (num > 0)
 	{

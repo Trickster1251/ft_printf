@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	int		mod;
 	int		dif;
@@ -23,19 +23,13 @@ int		ft_putnbr_fd(int n, int fd)
 	len = 1;
 	if (n == -2147483648)
 	{
-		ft_putstr_fd("2147483648", fd);
-		return (10);
+		ft_putstr_fd("-2147483648", fd);
 	}
 	else if (n < 0)
-	{
 		n *= -1;
-		write(fd, "-", 1);
-		len++;
-	}
 	mod = n % 10;
 	dif = n / 10;
-	if (dif != 0 && len++)
+	if (dif != 0)
 		ft_putnbr_fd(dif, fd);
-	write(fd, mod + '0', 1);
-	return (len);
+	ft_putchar_fd(mod + '0', 1);
 }

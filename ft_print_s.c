@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_print_s_no_flag(va_list *argptr, t_list *va, int len_str, char *str)
+int		ft_print_s_no_flag(t_list *va, int len_str, char *str)
 {
 	int len;
 
@@ -48,6 +48,6 @@ int		ft_print_s(va_list *argptr, t_list *va)
 		(va->witdth - MIN(len_str, va->precission)), ' ');
 	}
 	else
-		ft_print_s_no_flag(*argptr, va, len_str, str);
+		len += ft_print_s_no_flag(va, len_str, str);
 	return (len);
 }

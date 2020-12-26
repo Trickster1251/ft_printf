@@ -44,11 +44,12 @@ int		ft_print_right(int len_num, t_list *va, int num)
 	if (va->flag == 0 && !(va->dot))
 		sym = '0';
 	if (va->negative == 1 && sym == '0')
-	{
 		ft_putchar_fd('-', 1);
-	}
-	if (va->negative == 1 && len_num++)
+	if (va->negative == 1)
+	{
+		len_num++;
 		va->precission++;
+	}
 	len += ft_print_while(va->witdth - MAX(len_num, va->precission), sym);
 	if (va->negative == 1 && sym != '0')
 		ft_putchar_fd('-', 1);
